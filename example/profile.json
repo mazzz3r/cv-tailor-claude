@@ -1,0 +1,63 @@
+{
+  "_help": "ПРИМЕР. Вымышленный человек, вымышленные компании, нерабочие контакты.",
+
+  "identity": {
+    "name": {
+      "ru": "Алексей Морозов",
+      "en": "Alexey Morozov"
+    },
+    "telegram": "amorozovdemo",
+    "links": {
+      "github": "github.com/example-morozov",
+      "linkedin": "",
+      "site": ""
+    },
+    "location": {
+      "city": "Екатеринбург",
+      "relocation": "Москва, Санкт-Петербург",
+      "remote": "предпочтительно; готов к гибриду"
+    },
+    "languages": "Русский — родной, английский — B2 (техническая документация, переписка, созвоны)"
+  },
+
+  "contacts": {
+    "_help": "Комплекты не смешиваются: на отклик уходит ровно один.",
+    "rf": {
+      "label": "Россия / hh.ru",
+      "email": "a.morozov@example.com",
+      "phone": "+7 900 000 11 22"
+    },
+    "intl": {
+      "label": "Международный рынок / remote",
+      "email": "alexey.morozov@example.org",
+      "phone": "+7 900 000 33 44"
+    }
+  },
+
+  "role_families": [
+    {
+      "id": "backend",
+      "label_ru": "Backend-разработчик (Python / Go)",
+      "label_en": "Backend Engineer (Python / Go)",
+      "signals": [
+        "backend", "бэкенд", "Python", "Go", "FastAPI", "Django",
+        "микросервисы", "REST API", "gRPC", "highload", "PostgreSQL"
+      ]
+    },
+    {
+      "id": "platform",
+      "label_ru": "Platform / Infrastructure Engineer",
+      "label_en": "Platform / Infrastructure Engineer",
+      "signals": [
+        "platform", "infrastructure", "DevOps", "SRE", "Kubernetes",
+        "CI/CD", "Docker", "надёжность", "мониторинг", "observability"
+      ]
+    }
+  ],
+
+  "defaults": {
+    "page_budget": 2,
+    "primary_market": "rf",
+    "seniority": "Middle"
+  }
+}

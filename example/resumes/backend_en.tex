@@ -1,0 +1,159 @@
+% =====================================================================
+%  EXAMPLE. Base resume, role family: backend, market: intl, language: en
+%  Built by the build-resume skill from example/facts.md.
+%  Fictional person and companies.
+% =====================================================================
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{microtype}
+\usepackage{titlesec}
+
+\geometry{margin=1.35cm}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=1.15em, itemsep=2pt, topsep=2pt, parsep=0pt}
+
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{6pt}{4pt}
+
+\hypersetup{colorlinks=true, urlcolor=black, linkcolor=black}
+\Urlmuskip=0mu plus 1mu
+\emergencystretch=2em
+\sloppy
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+% \mbox prevents a break after "/": otherwise extraction yields "CI/ CD".
+\newcommand{\CICD}{\mbox{CI/CD}}
+
+% ---------- DATA (profile.json, CONTACT-INTL set) ----------
+\newcommand{\CVName}{Alexey Morozov}
+\newcommand{\CVTitle}{Backend Engineer (Python / Go)}
+\newcommand{\CVEmail}{alexey.morozov@example.org}
+\newcommand{\CVPhone}{+7 900 000 33 44}
+\newcommand{\CVTelegram}{amorozovdemo}
+
+\begin{document}
+
+% FACT: IDENT-name CONTACT-INTL TITLE-backend IDENT-telegram LOC-ekb LANG-en-b2
+{\LARGE \textbf{\CVName}}\\
+\textbf{\CVTitle}\\
+Email: \href{mailto:\CVEmail}{\CVEmail} \quad
+Phone: \CVPhone \quad
+Telegram: \href{https://t.me/\CVTelegram}{@\CVTelegram}\\
+Remote or hybrid \quad English --- B2
+
+\section*{Professional Summary}
+
+% FACT: SUM-backend-en
+Backend engineer with 5 years of experience, 3 of them in fintech. I build and run
+microservices in Python (FastAPI, asyncio) and Go: the payment gateway my team owns
+handles around 400 requests per second at peak. Particular strength in PostgreSQL
+beyond CRUD --- query plans, indexing and partitioning. I take services through to
+production rather than to merge: tests, metrics, and on-call incident analysis.
+
+\section*{Technical Skills}
+
+% FACT: SKL-lang SKL-frameworks SKL-db SKL-infra SKL-arch SKL-obs SKL-test
+\textbf{Languages:} Python (5 years, asyncio, typing), Go (2 years, services in
+production), SQL, Bash, Git; Rust --- basic\\
+\textbf{Frameworks and protocols:} FastAPI, aiohttp, Celery, gRPC, REST API;
+Django --- 1.5 years\\
+\textbf{Databases and queues:} PostgreSQL (query plans, indexing, partitioning),
+Redis (caching, distributed locks); Kafka --- producing and consuming in production
+tasks; MongoDB --- basic\\
+\textbf{Infrastructure:} Docker, GitLab \CICD{} (\mbox{Continuous Integration/Delivery}),
+Linux; Kubernetes --- deploying via existing manifests, debugging pod failures\\
+\textbf{Architecture and reliability:} microservice decomposition, idempotency,
+retries, partial-failure handling; saga pattern --- limited exposure\\
+\textbf{Observability and testing:} Prometheus, Grafana, Sentry, structured logging,
+pytest, testcontainers
+
+\section*{Experience}
+
+% FACT: EXP-aurora
+\textbf{Aurora Fintech} \hfill \textit{March 2023 --- Present}\\
+\textit{Backend Engineer}
+\begin{itemize}
+    \item Build and maintain a payment gateway in Python (FastAPI, asyncio): payment
+          intake, provider reconciliation, retries and operation idempotency.
+    \item Designed the idempotency scheme for payment operations, eliminating double
+          charges on retried requests.
+    \item Ported two internal services from Python to Go, roughly halving response
+          time on heavy endpoints.
+    \item Tuned PostgreSQL: query plans, missing indexes, monthly partitioning of the
+          transactions table.
+    \item Set up Prometheus and Grafana metrics and alerts for my services; on-call
+          rotation, incident analysis and postmortems.
+    \item Integration and unit testing with pytest and testcontainers across critical paths.
+    \item Code review and mentoring: two interns, both hired after their internship.
+\end{itemize}
+
+% FACT: EXP-cityline
+\textbf{Cityline Retail} \hfill \textit{July 2021 --- February 2023}\\
+\textit{Backend Engineer}
+\begin{itemize}
+    \item Developed catalogue and cart services for an e-commerce platform in Python
+          (Django, later FastAPI), exposing REST APIs to web and mobile clients.
+    \item Moved price-list export to asynchronous tasks (Celery, Redis), unblocking
+          the main request path and fitting the nightly window.
+    \item Built a Redis caching layer for the catalogue, cutting peak load on the
+          primary database.
+    \item Extracted the catalogue service during a monolith split, including data migration.
+    \item Maintained GitLab \CICD{} pipelines: tests, linters, image builds.
+\end{itemize}
+
+% FACT: EXP-cityline-intern
+\textbf{Cityline Retail} \hfill \textit{February 2021 --- June 2021}\\
+\textit{Software Engineering Intern}
+\begin{itemize}
+    \item Fixed bugs in an existing codebase, wrote unit tests, learned to navigate
+          a large legacy code base. Received a full-time offer after the internship.
+\end{itemize}
+
+\section*{Projects}
+
+% FACT: PRJ-ratelimit
+\textbf{Rate limiter in Go} \hfill \textit{personal, open source}
+\begin{itemize}
+    \item Rate-limiting library: token bucket and sliding window, Redis-backed state
+          for distributed mode, benchmarks and race-condition tests.
+    \item Adopted by one of the internal services at work.
+\end{itemize}
+
+% FACT: PRJ-migrator
+\textbf{Database schema migration tool} \hfill \textit{internal library at work}
+\begin{itemize}
+    \item CLI on top of Alembic: ordered migration runs across several services,
+          rollback, and pre-deploy checks for incompatible changes.
+    \item Extracted into an internal library, used by three teams.
+\end{itemize}
+
+\section*{Education}
+
+% FACT: EDU-utu
+\textbf{Ural Technical University} --- B.Sc. Software Engineering (2017--2021)
+
+% FACT: EDU-go EDU-pg
+\textbf{Additional training}
+\begin{itemize}
+    \item Go for backend engineers --- ported two internal services from Python to Go
+          as the practical outcome.
+    \item PostgreSQL query plans and optimisation --- slow query log analysis, query
+          rewriting, index selection.
+\end{itemize}
+
+\section*{Awards}
+
+% FACT: AWD-hackathon
+\begin{itemize}
+    \item Fintech Hackathon 2022 --- 2nd place, team category.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,115 @@
+% =====================================================================
+%  БАЗОВЫЙ ШАБЛОН РЕЗЮМЕ (RU)
+%
+%  1. Скопировать в resumes/<семейство>_ru.tex
+%  2. Заполнить блок «ДАННЫЕ» значениями из profile.json (комплект контактов —
+%     строго под рынок; комплекты не смешивать)
+%  3. Наполнить секции фактами из facts.md. КАЖДЫЙ содержательный блок несёт
+%     комментарий % FACT: <id> — по нему ats_check.py проверяет провенанс.
+%
+%  Ничего сверх facts.md не добавлять. Формат намеренно простой: одна колонка,
+%  без таблиц, колонок, иконок и фото — иначе строгие парсеры (Workday) ломаются.
+% =====================================================================
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian,english]{babel}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{microtype}
+\usepackage{titlesec}
+
+\geometry{left=1.35cm,right=1.35cm,top=1.25cm,bottom=1.25cm}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=1.15em, itemsep=2pt, topsep=2pt, parsep=0pt}
+
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{6pt}{4pt}
+
+\hypersetup{colorlinks=true, urlcolor=black, linkcolor=black}
+\Urlmuskip=0mu plus 1mu
+\emergencystretch=2em
+\sloppy
+
+% ОБЯЗАТЕЛЬНО: без этого кириллица извлекается из PDF кракозябрами
+% и ATS видит мусор вместо текста.
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+% Часто повторяющиеся сокращения. \mbox защищает от переноса внутри токена:
+% перенос после «/» даёт при извлечении битые токены вида «C/ C++».
+% Не заменять на \allowbreak.
+% \newcommand{\CCPP}{\mbox{C/C++}}
+
+% ---------- ДАННЫЕ (из profile.json) ----------
+\newcommand{\CVName}{Имя Фамилия}
+\newcommand{\CVTitle}{Заголовок из facts.md §1}
+\newcommand{\CVEmail}{name@example.com}
+\newcommand{\CVPhone}{+7 000 000 00 00}
+\newcommand{\CVTelegram}{example}
+
+\begin{document}
+
+% ---------- ШАПКА ----------
+% FACT: IDENT-name CONTACT-RF TITLE-XXX
+{\LARGE \textbf{\CVName}}\\
+\textbf{\CVTitle}\\
+Email: \href{mailto:\CVEmail}{\CVEmail} \quad
+Телефон: \CVPhone \quad
+Telegram: \href{https://t.me/\CVTelegram}{@\CVTelegram}
+
+% ---------- О СЕБЕ ----------
+% Абзац SUM-... из facts.md §2. Верхняя треть резюме — самая весомая для
+% ранжирования: ключевые слова вакансии размещать здесь.
+\section*{О себе}
+% FACT: SUM-XXX
+
+% ---------- НАВЫКИ ----------
+% Группы из facts.md §7. Только verified/basic. [gap]-инструменты не писать.
+% Каждый заявленный навык должен подтверждаться буллетом в «Опыт» или «Проекты».
+\section*{Навыки}
+% FACT: SKL-XXX
+% \textbf{Языки:} ...\\
+% \textbf{Инфраструктура:} ...
+
+% ---------- ОПЫТ ----------
+% Из facts.md §4. Порядок «организация -> должность -> даты» парсится корректно
+% строгими ATS. Даты писать «месяц год», голых годов избегать.
+\section*{Опыт}
+% FACT: EXP-XXX
+% \textbf{Организация} \hfill \textit{март 2023 -- н.в.}\\
+% \textit{Должность}
+% \begin{itemize}
+%   \item ...
+% \end{itemize}
+
+% ---------- ПРОЕКТЫ ----------
+% Из facts.md §5.
+\section*{Проекты}
+% FACT: PRJ-XXX
+% \textbf{Название} \hfill \textit{стек / контекст}
+% \begin{itemize}
+%   \item ...
+% \end{itemize}
+
+% ---------- ОБРАЗОВАНИЕ ----------
+% Из facts.md §3.
+\section*{Образование}
+% FACT: EDU-XXX
+% \textbf{Учреждение} \hfill \textit{2017 -- 2021}\\
+% Программа
+
+% ---------- ДОСТИЖЕНИЯ ----------
+% Из facts.md §8, отфильтровать по тегам семейства. Секцию можно убрать,
+% если достижений нет или они нерелевантны.
+\section*{Достижения}
+% FACT: AWD-XXX
+% \begin{itemize}
+%   \item ...
+% \end{itemize}
+
+\end{document}

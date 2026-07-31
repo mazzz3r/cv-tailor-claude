@@ -1,0 +1,170 @@
+% =====================================================================
+%  ПРИМЕР. Отклик: Ритм Технологии — Backend-разработчик (Python)
+%  База: resumes/backend_ru.tex · рынок rf · контакты CONTACT-RF
+%  Изменения относительно базы (см. analysis.md):
+%    - заголовок подогнан под название вакансии;
+%    - «О себе» переформулировано под терминологию вакансии;
+%    - PostgreSQL и микросервисы подняты выше;
+%    - PRJ-tgbot убран как нерелевантный.
+%  ClickHouse и Terraform НЕ дописаны: фактов нет, термины в gap-blacklist.
+% =====================================================================
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian,english]{babel}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{microtype}
+\usepackage{titlesec}
+
+\geometry{left=1.35cm,right=1.35cm,top=1.25cm,bottom=1.25cm}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=1.15em, itemsep=2pt, topsep=2pt, parsep=0pt}
+
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{6pt}{4pt}
+
+\hypersetup{colorlinks=true, urlcolor=black, linkcolor=black}
+\Urlmuskip=0mu plus 1mu
+\emergencystretch=2em
+\sloppy
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\newcommand{\CICD}{\mbox{CI/CD}}
+\newcommand{\RESTAPI}{\mbox{REST API}}
+
+% ---------- ДАННЫЕ (profile.json, комплект CONTACT-RF) ----------
+\newcommand{\CVName}{Алексей Морозов}
+\newcommand{\CVTitle}{Backend-разработчик (Python)}
+\newcommand{\CVEmail}{a.morozov@example.com}
+\newcommand{\CVPhone}{+7 900 000 11 22}
+\newcommand{\CVTelegram}{amorozovdemo}
+
+\begin{document}
+
+% FACT: IDENT-name CONTACT-RF TITLE-backend IDENT-telegram LOC-ekb
+{\LARGE \textbf{\CVName}}\\
+\textbf{\CVTitle}\\
+Email: \href{mailto:\CVEmail}{\CVEmail} \quad
+Телефон: \CVPhone \quad
+Telegram: \href{https://t.me/\CVTelegram}{@\CVTelegram}\\
+Екатеринбург \quad Удалённо или гибрид \quad Английский --- B2
+
+\section*{О себе}
+
+% FACT: SUM-backend
+Backend-разработчик с 5 годами коммерческого опыта на Python, из них 3 года в финтехе.
+Пишу на Python (FastAPI, asyncio) и Go, проектирую \RESTAPI{} и сопровождаю микросервисы
+под нагрузкой: платёжный шлюз, над которым работает моя команда, обрабатывает порядка
+400 запросов в секунду в пике. Отдельная сильная сторона --- PostgreSQL глубже CRUD:
+разбор планов запросов, индексы, партиционирование. Довожу задачи до эксплуатации,
+а не до мержа: пишу юнит-тесты, участвую в код-ревью, настраиваю метрики и разбираю
+инциденты по своим сервисам.
+
+\section*{Навыки}
+
+% FACT: SKL-lang SKL-frameworks SKL-db SKL-infra SKL-arch SKL-obs SKL-test
+\textbf{Языки:} Python (5 лет, asyncio, typing), SQL, Go (2 года, сервисы в проде),
+Bash, Git; Rust --- базово\\
+\textbf{Фреймворки и протоколы:} FastAPI, aiohttp, Celery, gRPC, \RESTAPI{};
+Django --- работал 1,5 года\\
+\textbf{Базы данных и очереди:} PostgreSQL (планы запросов, индексы,
+партиционирование), Redis (кеш, распределённые блокировки); Kafka --- чтение и
+запись из рабочих задач; MongoDB --- базово\\
+\textbf{Архитектура:} микросервисы и декомпозиция монолита, идемпотентность, ретраи,
+обработка частичных отказов; saga --- ограниченно\\
+\textbf{Инфраструктура:} Docker, GitLab \CICD{}, Linux; Kubernetes --- выкатка по
+готовым манифестам, разбор падений подов\\
+\textbf{Наблюдаемость и тесты:} Prometheus, Grafana, Sentry, структурные логи,
+pytest, testcontainers
+
+\section*{Опыт}
+
+% FACT: EXP-aurora
+\textbf{Аврора Финтех} \hfill \textit{март 2023 --- н.в.}\\
+\textit{Backend-разработчик}
+\begin{itemize}
+    \item Разрабатываю и сопровождаю платёжный шлюз на Python (FastAPI, asyncio):
+          приём платежей, сверка с провайдерами, повторы и идемпотентность операций.
+    \item Оптимизировал запросы к PostgreSQL: разбор планов, недостающие индексы,
+          партиционирование таблицы транзакций по месяцам.
+    \item Спроектировал схему идемпотентности платёжных операций: повторная отправка
+          запроса не приводит к двойному списанию.
+    \item Перевёл два внутренних сервиса с Python на Go; время ответа на тяжёлых
+          ручках снизилось примерно вдвое.
+    \item Пишу тесты: pytest, testcontainers для интеграционных, покрытие критичных
+          путей; провожу код-ревью и менторю стажёров (две стажировки, обе
+          закончились наймом).
+    \item Настроил метрики и алерты (Prometheus, Grafana) по своим сервисам; дежурю
+          в ротации, разбираю инциденты и пишу постмортемы.
+\end{itemize}
+
+% FACT: EXP-cityline
+\textbf{Ситилайн Ритейл} \hfill \textit{июль 2021 --- февраль 2023}\\
+\textit{Backend-разработчик}
+\begin{itemize}
+    \item Разрабатывал сервисы каталога и корзины интернет-магазина на Python
+          (Django, затем FastAPI); \RESTAPI{} для веб- и мобильных клиентов.
+    \item Участвовал в распиливании монолита на микросервисы: выделил каталог
+          в отдельный сервис вместе с миграцией данных.
+    \item Вынес выгрузку прайс-листов в асинхронные задачи (Celery, Redis): выгрузка
+          перестала блокировать основной поток и укладывалась в ночное окно.
+    \item Написал слой кеширования каталога на Redis; нагрузка на основную базу
+          в часы пик заметно снизилась.
+    \item Настраивал пайплайны GitLab \CICD{}: прогон тестов, линтеры, сборка образов.
+\end{itemize}
+
+% FACT: EXP-cityline-intern
+\textbf{Ситилайн Ритейл} \hfill \textit{февраль 2021 --- июнь 2021}\\
+\textit{Стажёр-разработчик}
+\begin{itemize}
+    \item Правил баги в существующем коде, писал юнит-тесты, разбирался с чужой
+          кодовой базой. По итогам стажировки получил оффер.
+\end{itemize}
+
+\section*{Проекты}
+
+% FACT: PRJ-migrator
+\textbf{Инструмент миграций схемы БД} \hfill \textit{рабочий, внутренняя библиотека}
+\begin{itemize}
+    \item CLI поверх Alembic: прогон миграций в нужном порядке для нескольких
+          сервисов, откат, проверка на несовместимые изменения перед выкаткой.
+    \item Вынесен во внутреннюю библиотеку, используют три команды.
+\end{itemize}
+
+% FACT: PRJ-ratelimit
+\textbf{Rate limiter на Go} \hfill \textit{личный проект, открытый код}
+\begin{itemize}
+    \item Библиотека ограничения частоты запросов: token bucket и sliding window,
+          состояние в Redis для распределённого режима; бенчмарки и тесты на гонки.
+    \item Используется в одном из внутренних сервисов на работе.
+\end{itemize}
+
+\section*{Образование}
+
+% FACT: EDU-utu
+\textbf{Уральский технический университет} \hfill \textit{2017 --- 2021}\\
+Программная инженерия, бакалавр
+
+% FACT: EDU-pg EDU-go
+\textbf{Доп. обучение}
+\begin{itemize}
+    \item PostgreSQL: планы запросов и оптимизация --- разбор slow query log,
+          переписывание запросов, подбор индексов.
+    \item Go для backend-разработчиков --- по итогам перевёл два внутренних сервиса
+          с Python на Go.
+\end{itemize}
+
+\section*{Достижения}
+
+% FACT: AWD-hackathon
+\begin{itemize}
+    \item Финтех-хакатон 2022 --- 2 место в командном зачёте.
+\end{itemize}
+
+\end{document}

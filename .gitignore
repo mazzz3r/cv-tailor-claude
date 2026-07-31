@@ -1,0 +1,16 @@
+# LaTeX
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.fls
+*.fdb_latexmk
+
+# OS
+.DS_Store
+
+# Исходники для init-cv: чужие/старые резюме, выгрузки профилей — не в историю
+inbox/*
+!inbox/README.md
+!inbox/.gitkeep

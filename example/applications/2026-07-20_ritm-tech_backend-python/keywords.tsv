@@ -1,0 +1,23 @@
+# must — из блока «Требования», nice — из «Будет плюсом».
+# Словоформы сохранены ровно те, что в тексте вакансии.
+must	Python
+must	FastAPI
+must	asyncio
+must	PostgreSQL
+must	SQL
+must	Docker
+must	Linux
+must	Git
+must	REST API
+must	микросервисы
+must	код-ревью
+must	юнит-тесты
+must	ClickHouse
+nice	Go
+nice	Kubernetes
+nice	Kafka
+nice	Redis
+nice	gRPC
+nice	CI/CD
+nice	Prometheus
+nice	Terraform

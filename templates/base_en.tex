@@ -1,0 +1,103 @@
+% =====================================================================
+%  BASE RESUME TEMPLATE (EN)
+%
+%  1. Copy to resumes/<family>_en.tex
+%  2. Fill the DATA block from profile.json (contact set must match the target
+%     market; never mix sets)
+%  3. Fill sections with facts from facts.md. EVERY content block carries a
+%     % FACT: <id> comment — ats_check.py verifies provenance against it.
+%
+%  Nothing beyond facts.md. Layout is deliberately plain: single column, no
+%  tables, no columns, no icons, no photo — strict parsers (Workday) break on them.
+% =====================================================================
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{microtype}
+\usepackage{titlesec}
+
+\geometry{margin=1.35cm}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=1.15em, itemsep=2pt, topsep=2pt, parsep=0pt}
+
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{6pt}{4pt}
+
+\hypersetup{colorlinks=true, urlcolor=black, linkcolor=black}
+\Urlmuskip=0mu plus 1mu
+\emergencystretch=2em
+\sloppy
+
+% REQUIRED: guarantees a ToUnicode map so text extraction is clean.
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+% Frequently repeated abbreviations. \mbox prevents a line break inside the
+% token: breaking after "/" yields broken extracted tokens like "CI/ CD".
+% Do not replace with \allowbreak.
+% \newcommand{\CICD}{\mbox{CI/CD}}
+
+% ---------- DATA (from profile.json) ----------
+\newcommand{\CVName}{First Last}
+\newcommand{\CVTitle}{Title from facts.md section 1}
+\newcommand{\CVEmail}{name@example.com}
+\newcommand{\CVPhone}{+7 000 000 00 00}
+\newcommand{\CVTelegram}{example}
+
+\begin{document}
+
+% ---------- HEADER ----------
+% FACT: IDENT-name CONTACT-INTL TITLE-XXX
+{\LARGE \textbf{\CVName}}\\
+\textbf{\CVTitle}\\
+Email: \href{mailto:\CVEmail}{\CVEmail} \quad
+Phone: \CVPhone \quad
+Telegram: \href{https://t.me/\CVTelegram}{@\CVTelegram}
+
+% ---------- SUMMARY ----------
+% SUM-... paragraph from facts.md section 2. The top third of the resume carries
+% the most ranking weight — place JD keywords here.
+\section*{Professional Summary}
+% FACT: SUM-XXX-en
+
+% ---------- SKILLS ----------
+% Groups from facts.md section 7. Only verified/basic; never list [gap] tools.
+% Spell out each abbreviation once: "CI/CD (Continuous Integration/Delivery)".
+\section*{Technical Skills}
+% FACT: SKL-XXX
+% \textbf{Languages:} ...\\
+% \textbf{Infrastructure:} ...
+
+% ---------- EXPERIENCE ----------
+% From facts.md section 4. "Month Year -- Present" format; avoid bare years.
+\section*{Experience}
+% FACT: EXP-XXX
+% \textbf{Organization} \hfill \textit{March 2023 -- Present}\\
+% \textit{Job Title}
+% \begin{itemize}
+%   \item ...
+% \end{itemize}
+
+% ---------- PROJECTS ----------
+% From facts.md section 5.
+\section*{Projects}
+% FACT: PRJ-XXX
+
+% ---------- EDUCATION ----------
+% From facts.md section 3.
+\section*{Education}
+% FACT: EDU-XXX
+% \textbf{Institution} --- B.Sc. Programme (2017--2021)
+
+% ---------- AWARDS ----------
+% From facts.md section 8, filtered by family tags. Drop the section if empty.
+\section*{Awards}
+% FACT: AWD-XXX
+
+\end{document}

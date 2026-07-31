@@ -1,0 +1,52 @@
+{
+  "_help": "Личность, контакты по рынкам и семейства ролей. Заполняется скиллом init-cv или руками. Все значения __FILL_ME__ обязательны к замене — ats_check.py на них падает.",
+
+  "identity": {
+    "name": {
+      "ru": "__FILL_ME__",
+      "en": "__FILL_ME__"
+    },
+    "telegram": "",
+    "links": {
+      "github": "",
+      "linkedin": "",
+      "site": ""
+    },
+    "location": {
+      "city": "",
+      "relocation": "",
+      "remote": ""
+    },
+    "languages": ""
+  },
+
+  "contacts": {
+    "_help": "Ключ = рынок. Комплекты не смешиваются: на отклик уходит ровно один. Рынки можно называть как угодно (rf, intl, eu, kz…), tailor-cv читает этот список.",
+    "rf": {
+      "label": "Россия / hh.ru",
+      "email": "__FILL_ME__",
+      "phone": "__FILL_ME__"
+    },
+    "intl": {
+      "label": "Международный рынок / remote",
+      "email": "__FILL_ME__",
+      "phone": "__FILL_ME__"
+    }
+  },
+
+  "role_families": [
+    {
+      "_help": "Одно семейство = одна целевая роль = один тег в facts.md = одна пара базовых резюме. Обычно 2-4 штуки. signals — слова из вакансий, по которым tailor-cv относит JD к этому семейству.",
+      "id": "__FILL_ME__",
+      "label_ru": "__FILL_ME__",
+      "label_en": "__FILL_ME__",
+      "signals": []
+    }
+  ],
+
+  "defaults": {
+    "page_budget": 2,
+    "primary_market": "rf",
+    "seniority": ""
+  }
+}
